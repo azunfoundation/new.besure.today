@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://besure.today/sitemap.xml
+
+# Block access to PHP files directly
+Disallow: /php/
+
+# Block thank-you and 404 from indexing
+Disallow: /thank-you.html

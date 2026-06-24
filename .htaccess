@@ -1,0 +1,126 @@
+# ============================================
+# BeSURE Business Consulting - .htaccess
+# Apache configuration for Hostinger Shared Hosting
+# ============================================
+
+# ===== 404 ERROR PAGE =====
+ErrorDocument 404 /404.html
+
+# ===== GZIP COMPRESSION =====
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/xml
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/json
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE font/woff2
+</IfModule>
+
+# ===== BROWSER CACHING =====
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # Images
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # CSS and JavaScript
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  
+  # Fonts
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  
+  # HTML
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# ===== CACHE CONTROL HEADERS =====
+<IfModule mod_headers.c>
+  # CSS & JS - 1 month
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+  
+  # Images - 1 year
+  <FilesMatch "\.(ico|jpg|jpeg|png|gif|webp|svg)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  # Fonts - 1 year
+  <FilesMatch "\.(woff|woff2|ttf|eot)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  
+  # HTML - no cache for fresh content
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+
+  # Security Headers
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set X-XSS-Protection "1; mode=block"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=()"
+</IfModule>
+
+# ===== SECURITY =====
+# Block access to sensitive files
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|sql|bak|config|dist|fla|inc|psd|swp)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# Prevent directory browsing
+Options -Indexes
+
+# Block access to PHP files in specific directories
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Redirect www to non-www (adjust as needed)
+  # RewriteCond %{HTTP_HOST} ^www\.besure\.today [NC]
+  # RewriteRule ^(.*)$ https://besure.today/$1 [L,R=301]
+  
+  # Force HTTPS
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  
+  # Remove .html extension (optional - clean URLs)
+  # RewriteCond %{REQUEST_FILENAME} !-d
+  # RewriteCond %{REQUEST_FILENAME}.html -f
+  # RewriteRule ^(.+?)/?$ $1.html [L]
+</IfModule>
+
+# ===== MIME TYPES =====
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+  AddType application/javascript .js
+  AddType text/css .css
+</IfModule>
+
+# ===== KEEP-ALIVE =====
+<IfModule mod_headers.c>
+  Header set Connection keep-alive
+</IfModule>
+
+# ===== ETags =====
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+FileETag None
