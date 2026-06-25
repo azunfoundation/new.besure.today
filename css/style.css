@@ -1025,11 +1025,11 @@ p {
    11. Hero (Homepage)
    -------------------------------------------------------------------------- */
 .hero {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--header-height));
   display: flex;
   align-items: center;
-  padding-top: calc(var(--header-height) + 36px + var(--space-lg));
-  padding-bottom: var(--space-3xl);
+  padding-top: calc(var(--header-height) + var(--space-md));
+  padding-bottom: var(--space-2xl);
   position: relative;
   overflow: hidden;
   background: linear-gradient(165deg, var(--surface-cream) 0%, var(--surface-white) 50%, var(--surface-cool) 100%);
@@ -1048,8 +1048,8 @@ p {
 
 .hero__grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-3xl);
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-2xl);
   align-items: center;
 }
 
@@ -1184,7 +1184,7 @@ p {
 .hero__visual-wrapper {
   position: relative;
   width: 100%;
-  max-width: 520px;
+  max-width: 480px;
 }
 
 .hero__image {
