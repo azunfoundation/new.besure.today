@@ -1334,12 +1334,7 @@ p {
 
 .clients__track {
   display: inline-flex;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  -webkit-animation: marquee 20s linear infinite;
-  animation: marquee 20s linear infinite;
-  will-change: transform;
+  white-space: nowrap;
 }
 
 .clients__item {

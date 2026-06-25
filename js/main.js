@@ -325,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================================================
-  // 12. Client Logo Marquee Clone
+  // 12. Client Logo Marquee (JS-driven, immune to prefers-reduced-motion)
   // ========================================================================
   const clientTrack = document.querySelector('.clients__track');
   if (clientTrack && clientTrack.children.length > 0) {
@@ -335,6 +335,25 @@ document.addEventListener('DOMContentLoaded', () => {
       const clone = item.cloneNode(true);
       clientTrack.appendChild(clone);
     });
+
+    // JS-driven marquee using requestAnimationFrame
+    let offset = 0;
+    const speed = 0.5; // pixels per frame (~30px/sec at 60fps)
+    const halfWidth = clientTrack.scrollWidth / 2;
+
+    function animateMarquee() {
+      offset -= speed;
+      if (Math.abs(offset) >= halfWidth) {
+        offset = 0;
+      }
+      clientTrack.style.transform = 'translateX(' + offset + 'px)';
+      requestAnimationFrame(animateMarquee);
+    }
+
+    // Force override any CSS animation that might interfere
+    clientTrack.style.animation = 'none';
+    clientTrack.style.webkitAnimation = 'none';
+    requestAnimationFrame(animateMarquee);
   }
 
   // ========================================================================
