@@ -1334,13 +1334,9 @@ p {
 
 .clients__track {
   display: flex;
-  animation: marquee 50s linear infinite;
+  animation: marquee 35s linear infinite;
   width: max-content;
   will-change: transform;
-}
-
-.clients__wrapper:hover .clients__track {
-  animation-play-state: paused;
 }
 
 .clients__item {
@@ -3640,9 +3636,7 @@ a:focus:not(:focus-visible) {
     animation: none;
   }
 
-  .clients__track {
-    animation: none;
-  }
+
 }
 
 /* --------------------------------------------------------------------------
