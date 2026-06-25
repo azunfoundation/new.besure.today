@@ -116,15 +116,6 @@
     margin: 0 auto;
   }
 
-  /* Services Bento */
-  .services-bento {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .service-card--featured {
-    grid-column: span 1;
-  }
-
   /* Process Stats */
   .process-stats__grid {
     grid-template-columns: 1fr;
