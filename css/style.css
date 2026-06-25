@@ -913,7 +913,7 @@ p {
   z-index: var(--z-overlay);
   transition: right var(--transition-smooth);
   overflow-y: auto;
-  padding: calc(var(--header-height) + var(--space-lg)) var(--space-md) var(--space-lg);
+  padding: var(--space-xl) var(--space-md) var(--space-lg);
   box-shadow: -8px 0 32px rgba(0, 0, 0, 0.1);
 }
 
