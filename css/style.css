@@ -1334,8 +1334,13 @@ p {
 
 .clients__track {
   display: flex;
-  animation: marquee 30s linear infinite;
+  animation: marquee 50s linear infinite;
   width: max-content;
+  will-change: transform;
+}
+
+.clients__wrapper:hover .clients__track {
+  animation-play-state: paused;
 }
 
 .clients__item {
