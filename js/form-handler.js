@@ -1,251 +1,147 @@
-/* ============================================
-   BeSURE Business Consulting - Form Handler
-   Client-side validation & AJAX submission
-   ============================================ */
+/* ==========================================================================
+   BeSURE Business Consulting — Form Handler v2.0
+   ========================================================================== */
 
-(function() {
-  'use strict';
+'use strict';
 
-  document.addEventListener('DOMContentLoaded', function() {
-    initContactForm();
-    initAllForms();
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('#contact-form');
+  if (!form) return;
+
+  const submitBtn = form.querySelector('.form-submit-btn');
+  const successMsg = document.querySelector('.form-success');
+  const btnText = submitBtn?.querySelector('.btn-text');
+  const btnSpinner = submitBtn?.querySelector('.spinner');
+
+  // Validation rules
+  const validators = {
+    name: (value) => {
+      if (!value.trim()) return 'Please enter your full name';
+      if (value.trim().length < 2) return 'Name must be at least 2 characters';
+      return '';
+    },
+    email: (value) => {
+      if (!value.trim()) return 'Please enter your email address';
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) return 'Please enter a valid email address';
+      return '';
+    },
+    phone: (value) => {
+      if (value.trim() && !/^[\d\s\+\-\(\)]{7,20}$/.test(value.trim())) {
+        return 'Please enter a valid phone number';
+      }
+      return '';
+    },
+    subject: (value) => {
+      if (!value.trim()) return 'Please enter a subject';
+      return '';
+    },
+    message: (value) => {
+      if (!value.trim()) return 'Please enter your message';
+      if (value.trim().length < 10) return 'Message must be at least 10 characters';
+      return '';
+    }
+  };
+
+  // Validate a single field
+  const validateField = (input) => {
+    const name = input.getAttribute('name');
+    const validator = validators[name];
+    if (!validator) return true;
+
+    const error = validator(input.value);
+    const formGroup = input.closest('.form-group');
+    const errorEl = formGroup?.querySelector('.form-error');
+
+    if (error) {
+      formGroup?.classList.add('has-error');
+      if (errorEl) errorEl.textContent = error;
+      return false;
+    } else {
+      formGroup?.classList.remove('has-error');
+      if (errorEl) errorEl.textContent = '';
+      return true;
+    }
+  };
+
+  // Real-time validation
+  const inputs = form.querySelectorAll('.form-control');
+  inputs.forEach(input => {
+    // Validate on blur
+    input.addEventListener('blur', () => validateField(input));
+
+    // Clear error on input
+    input.addEventListener('input', () => {
+      const formGroup = input.closest('.form-group');
+      if (formGroup?.classList.contains('has-error')) {
+        validateField(input);
+      }
+    });
   });
 
-  /* ===== CONTACT FORM ===== */
-  function initContactForm() {
-    var form = document.getElementById('contactForm');
-    if (!form) return;
+  // Rate limiting
+  let lastSubmitTime = 0;
+  const SUBMIT_COOLDOWN = 30000; // 30 seconds
 
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
+  // Form submission
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-      if (!validateForm(form)) return;
+    // Honeypot check
+    const honeypot = form.querySelector('.hp-field input');
+    if (honeypot && honeypot.value) return;
 
-      var submitBtn = form.querySelector('button[type="submit"]');
-      var successMsg = form.querySelector('.form-success');
-      var originalText = submitBtn.innerHTML;
+    // Rate limiting
+    const now = Date.now();
+    if (now - lastSubmitTime < SUBMIT_COOLDOWN) {
+      const remaining = Math.ceil((SUBMIT_COOLDOWN - (now - lastSubmitTime)) / 1000);
+      alert(`Please wait ${remaining} seconds before submitting again.`);
+      return;
+    }
 
-      // Loading state
-      submitBtn.classList.add('loading');
-      submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
-      submitBtn.disabled = true;
+    // Validate all fields
+    let isValid = true;
+    inputs.forEach(input => {
+      if (!validateField(input)) isValid = false;
+    });
 
-      // Prepare form data
-      var formData = new FormData(form);
+    if (!isValid) return;
 
-      // Check honeypot
-      var honeypot = form.querySelector('.hp-field input');
-      if (honeypot && honeypot.value !== '') {
-        // Bot detected, silently fail
-        submitBtn.classList.remove('loading');
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        return;
-      }
+    // Show loading state
+    if (submitBtn) submitBtn.classList.add('loading');
+    if (btnText) btnText.textContent = 'Sending...';
+    if (btnSpinner) btnSpinner.style.display = 'inline-block';
 
-      // Send via AJAX
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', form.getAttribute('action') || 'php/contact-handler.php', true);
+    try {
+      const formData = new FormData(form);
 
-      xhr.onload = function() {
-        submitBtn.classList.remove('loading');
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
+      const response = await fetch('php/contact-handler.php', {
+        method: 'POST',
+        body: formData
+      });
 
-        if (xhr.status === 200) {
-          try {
-            var response = JSON.parse(xhr.responseText);
-            if (response.success) {
-              // Show success message
-              if (successMsg) {
-                successMsg.classList.add('show');
-                successMsg.innerHTML = '<i class="fas fa-check-circle"></i> ' + 
-                  (response.message || 'Thank you! Your message has been sent successfully. We will get back to you within 24 hours.');
-              }
-              form.reset();
-              clearErrors(form);
+      const result = await response.json();
 
-              // Redirect to thank you page after delay
-              setTimeout(function() {
-                window.location.href = 'thank-you.html';
-              }, 2000);
-            } else {
-              showFormError(form, response.message || 'Something went wrong. Please try again.');
-            }
-          } catch (err) {
-            // If PHP is not available, show success anyway for static hosting
-            if (successMsg) {
-              successMsg.classList.add('show');
-              successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Thank you for your message! We will get back to you soon.';
-            }
-            form.reset();
-            clearErrors(form);
-          }
-        } else {
-          showFormError(form, 'Server error. Please try again or contact us directly.');
-        }
-      };
-
-      xhr.onerror = function() {
-        submitBtn.classList.remove('loading');
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        
-        // For static hosting without PHP, show success
+      if (result.success) {
+        lastSubmitTime = now;
+        form.style.display = 'none';
         if (successMsg) {
           successMsg.classList.add('show');
-          successMsg.innerHTML = '<i class="fas fa-check-circle"></i> Thank you for reaching out! Please also email us at info@besure.today for a faster response.';
+          successMsg.innerHTML = `
+            <i class="fa-solid fa-circle-check" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+            <strong>Thank you!</strong><br>
+            Your message has been sent successfully. We'll respond within 24 business hours.
+          `;
         }
-        form.reset();
-        clearErrors(form);
-      };
-
-      xhr.send(formData);
-    });
-
-    // Real-time validation on blur
-    var inputs = form.querySelectorAll('.form-control');
-    inputs.forEach(function(input) {
-      input.addEventListener('blur', function() {
-        validateField(input);
-      });
-
-      input.addEventListener('input', function() {
-        if (input.closest('.form-group').classList.contains('has-error')) {
-          validateField(input);
-        }
-      });
-    });
-  }
-
-  /* ===== FORM VALIDATION ===== */
-  function validateForm(form) {
-    var isValid = true;
-    var fields = form.querySelectorAll('[required]');
-
-    fields.forEach(function(field) {
-      if (!validateField(field)) {
-        isValid = false;
+      } else {
+        throw new Error(result.message || 'Something went wrong');
       }
-    });
-
-    // Focus first error field
-    if (!isValid) {
-      var firstError = form.querySelector('.form-group.has-error .form-control');
-      if (firstError) firstError.focus();
+    } catch (error) {
+      alert(error.message || 'Failed to send message. Please try again or call us directly.');
+    } finally {
+      if (submitBtn) submitBtn.classList.remove('loading');
+      if (btnText) btnText.textContent = 'Send Your Message';
+      if (btnSpinner) btnSpinner.style.display = 'none';
     }
-
-    return isValid;
-  }
-
-  function validateField(field) {
-    var group = field.closest('.form-group');
-    if (!group) return true;
-
-    var errorEl = group.querySelector('.form-error');
-    var value = field.value.trim();
-    var type = field.type;
-    var name = field.name;
-
-    // Remove previous errors
-    group.classList.remove('has-error');
-    field.classList.remove('error');
-
-    // Required check
-    if (field.hasAttribute('required') && value === '') {
-      showFieldError(group, field, errorEl, getFieldLabel(field) + ' is required');
-      return false;
-    }
-
-    // Email validation
-    if (type === 'email' && value !== '') {
-      var emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-      if (!emailRegex.test(value)) {
-        showFieldError(group, field, errorEl, 'Please enter a valid email address');
-        return false;
-      }
-    }
-
-    // Phone validation
-    if (name === 'phone' && value !== '') {
-      var phoneClean = value.replace(/[\s\-\(\)\+]/g, '');
-      if (phoneClean.length < 7 || phoneClean.length > 15 || !/^\+?\d+$/.test(phoneClean.replace(/\s/g, ''))) {
-        showFieldError(group, field, errorEl, 'Please enter a valid phone number');
-        return false;
-      }
-    }
-
-    // Min length check
-    if (field.hasAttribute('minlength')) {
-      var minLen = parseInt(field.getAttribute('minlength'), 10);
-      if (value.length < minLen) {
-        showFieldError(group, field, errorEl, getFieldLabel(field) + ' must be at least ' + minLen + ' characters');
-        return false;
-      }
-    }
-
-    return true;
-  }
-
-  function showFieldError(group, field, errorEl, message) {
-    group.classList.add('has-error');
-    field.classList.add('error');
-    if (errorEl) {
-      errorEl.textContent = message;
-      errorEl.style.display = 'block';
-    }
-  }
-
-  function getFieldLabel(field) {
-    var group = field.closest('.form-group');
-    if (group) {
-      var label = group.querySelector('label');
-      if (label) {
-        return label.textContent.replace('*', '').trim();
-      }
-    }
-    return field.placeholder || field.name || 'This field';
-  }
-
-  function clearErrors(form) {
-    var groups = form.querySelectorAll('.form-group');
-    groups.forEach(function(group) {
-      group.classList.remove('has-error');
-      var field = group.querySelector('.form-control');
-      if (field) field.classList.remove('error');
-      var errorEl = group.querySelector('.form-error');
-      if (errorEl) errorEl.style.display = 'none';
-    });
-  }
-
-  function showFormError(form, message) {
-    var errorContainer = form.querySelector('.form-global-error');
-    if (!errorContainer) {
-      errorContainer = document.createElement('div');
-      errorContainer.className = 'form-global-error';
-      errorContainer.style.cssText = 'background:#FEE2E2;color:#991B1B;padding:16px;border-radius:8px;margin-bottom:16px;font-size:14px;display:flex;align-items:center;gap:8px;';
-      form.insertBefore(errorContainer, form.firstChild);
-    }
-    errorContainer.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + message;
-    errorContainer.style.display = 'flex';
-
-    setTimeout(function() {
-      errorContainer.style.display = 'none';
-    }, 8000);
-  }
-
-  /* ===== INIT ALL FORMS (generic) ===== */
-  function initAllForms() {
-    // Add focus styling
-    var allInputs = document.querySelectorAll('.form-control');
-    allInputs.forEach(function(input) {
-      input.addEventListener('focus', function() {
-        input.closest('.form-group')?.classList.add('focused');
-      });
-      input.addEventListener('blur', function() {
-        input.closest('.form-group')?.classList.remove('focused');
-      });
-    });
-  }
-
-})();
+  });
+});
