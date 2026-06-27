@@ -1722,7 +1722,7 @@ p {
   display: grid;
   grid-template-columns: 1.2fr 1fr 1fr;
   gap: var(--space-md);
-  align-items: start;
+  align-items: stretch;
 }
 
 .testimonial-card {
@@ -1731,6 +1731,8 @@ p {
   padding: var(--space-lg);
   border: 1px solid var(--border-subtle);
   transition: all var(--transition-base);
+  display: flex;
+  flex-direction: column;
 }
 
 .testimonial-card:hover {
@@ -1799,6 +1801,7 @@ p {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  margin-top: auto;
 }
 
 .testimonial-card__avatar {
@@ -3974,11 +3977,13 @@ a:focus:not(:focus-visible) {
   background: var(--surface-white);
   border-radius: var(--radius-xl); padding: var(--space-xl);
   border: 1px solid var(--border-subtle); box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column;
 }
 .testimonial-card--featured {
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-midnight) 100%);
-  color: #fff; border: none;
+  border-color: var(--accent-gold);
+  background: linear-gradient(135deg, var(--surface-white), var(--surface-cream));
+  box-shadow: var(--shadow-glow-gold);
 }
 .testimonial-card__stars { color: var(--accent-gold-light); font-size: 1.1rem; margin-bottom: var(--space-base); }
 .testimonial-card__quote {
@@ -3986,17 +3991,17 @@ a:focus:not(:focus-visible) {
   color: var(--text-secondary); margin-bottom: var(--space-lg);
   font-style: italic;
 }
-.testimonial-card--featured .testimonial-card__quote { color: rgba(255,255,255,0.85); font-size: var(--text-lg); }
-.testimonial-card__author { display: flex; align-items: center; gap: var(--space-sm); }
+.testimonial-card--featured .testimonial-card__quote { color: var(--text-secondary); font-size: var(--text-lg); }
+.testimonial-card__author { display: flex; align-items: center; gap: var(--space-sm); margin-top: auto; }
 .testimonial-card__avatar {
   width: 48px; height: 48px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-weight: 700; color: #fff; font-size: var(--text-base); flex-shrink: 0;
 }
 .testimonial-card__name { font-weight: 700; font-size: var(--text-base); }
-.testimonial-card--featured .testimonial-card__name { color: #fff; }
+.testimonial-card--featured .testimonial-card__name { color: var(--text-primary); }
 .testimonial-card__role { font-size: var(--text-sm); color: var(--text-muted); }
-.testimonial-card--featured .testimonial-card__role { color: rgba(255,255,255,0.6); }
+.testimonial-card--featured .testimonial-card__role { color: var(--text-muted); }
 
 /* --------------------------------------------------------------------------
    FAQ Section
@@ -4041,13 +4046,14 @@ a:focus:not(:focus-visible) {
   gap: var(--space-2xl); align-items: start;
 }
 .contact-info-card {
-  background: linear-gradient(135deg, var(--primary-navy) 0%, var(--primary-midnight) 100%);
+  background: var(--surface-white);
   border-radius: var(--radius-2xl); padding: var(--space-2xl);
-  color: #fff;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
 }
 .contact-info-card__title {
   font-size: var(--text-xl); font-weight: 700;
-  color: #fff; margin-bottom: var(--space-xl);
+  color: var(--text-primary); margin-bottom: var(--space-xl);
 }
 .contact-detail {
   display: flex; gap: var(--space-base); margin-bottom: var(--space-lg);
@@ -4056,25 +4062,26 @@ a:focus:not(:focus-visible) {
 .contact-detail__icon {
   width: 40px; height: 40px; border-radius: var(--radius-lg); flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(37,99,235,0.2); color: var(--accent-sapphire-light);
+  background: rgba(37,99,235,0.1); color: var(--accent-sapphire);
   font-size: 0.9rem;
 }
 .contact-detail__label {
-  font-size: var(--text-xs); color: rgba(255,255,255,0.5);
+  font-size: var(--text-xs); color: var(--text-muted);
   font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;
   margin-bottom: 2px;
 }
-.contact-detail__value { color: rgba(255,255,255,0.9); font-size: var(--text-sm); line-height: 1.5; }
-.contact-detail__value a { color: rgba(255,255,255,0.9); text-decoration: none; }
-.contact-detail__value a:hover { color: var(--accent-gold-light); }
+.contact-detail__value { color: var(--text-secondary); font-size: var(--text-sm); line-height: 1.5; }
+.contact-detail__value a { color: var(--text-secondary); text-decoration: none; }
+.contact-detail__value a:hover { color: var(--accent-sapphire); }
 .contact-social { display: flex; gap: var(--space-sm); margin-top: var(--space-xl); }
 .contact-social__link {
   width: 40px; height: 40px; border-radius: 50%;
-  background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.7);
+  background: var(--surface-cream); color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
   display: flex; align-items: center; justify-content: center;
   text-decoration: none; transition: all var(--transition-base);
 }
-.contact-social__link:hover { background: var(--accent-sapphire); color: #fff; }
+.contact-social__link:hover { background: var(--accent-sapphire); color: #fff; border-color: var(--accent-sapphire); }
 
 .contact-form-wrapper {
   background: var(--surface-white);
@@ -4522,4 +4529,131 @@ a:focus:not(:focus-visible) {
   font-size: 16px;
   line-height: 1.6;
   color: var(--text-muted);
+}
+
+
+/* --------------------------------------------------------------------------
+   Overlapping Leadership Profile Design
+   -------------------------------------------------------------------------- */
+.leadership-profiles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4xl);
+  margin-top: var(--space-xl);
+}
+
+.leadership-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .leadership-profile {
+    flex-direction: row;
+    align-items: center;
+  }
+  .leadership-profile:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+}
+
+.leadership-profile__image-wrapper {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  z-index: 1;
+  position: relative;
+  background: var(--surface-cream);
+}
+
+@media (min-width: 992px) {
+  .leadership-profile__image-wrapper {
+    width: 45%;
+    flex-shrink: 0;
+  }
+}
+
+.leadership-profile__image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  display: block;
+}
+
+.leadership-profile__content {
+  background: #FFFFFF;
+  border-radius: 20px;
+  padding: var(--space-2xl);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  border: 1px solid var(--border-subtle);
+  position: relative;
+  z-index: 2;
+  margin-top: -60px;
+  width: 90%;
+}
+
+@media (min-width: 992px) {
+  .leadership-profile__content {
+    width: 65%;
+    margin-top: 0;
+    margin-left: -10%;
+    padding: 3rem;
+  }
+  .leadership-profile:nth-child(even) .leadership-profile__content {
+    margin-left: 0;
+    margin-right: -10%;
+  }
+}
+
+.leadership-profile__name {
+  font-size: var(--text-3xl);
+  font-weight: 800;
+  color: var(--text-base);
+  margin-bottom: 4px;
+}
+
+.leadership-profile__role {
+  font-size: var(--text-lg);
+  color: var(--accent-sapphire);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.leadership-profile__tagline {
+  font-size: var(--text-md);
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: var(--space-lg);
+  border-left: 3px solid var(--accent-gold);
+  padding-left: 12px;
+}
+
+.leadership-profile__bio p {
+  color: var(--text-muted);
+  line-height: 1.7;
+  font-size: var(--text-md);
+  margin-bottom: 16px;
+}
+
+.leadership-profile__expertise {
+  margin-top: var(--space-xl);
+}
+
+.leadership-profile__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.leadership-profile__tag {
+  background: var(--surface-cream);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-base);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
 }
