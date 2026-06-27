@@ -2444,13 +2444,16 @@ p {
 .team-card__photo-wrapper {
   position: relative;
   overflow: hidden;
-  min-height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-cream);
 }
 
 .team-card__photo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .team-card__content {
@@ -4078,8 +4081,8 @@ a:focus:not(:focus-visible) {
 }
 .team-card:hover { box-shadow: var(--shadow-xl); }
 .team-card--pet { border: 2px solid var(--accent-gold); }
-.team-card__photo-wrapper { overflow: hidden; }
-.team-card__photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.team-card__photo-wrapper { overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--surface-cream); }
+.team-card__photo { width: 100%; height: 100%; object-fit: contain; display: block; }
 .team-card__content { padding: var(--space-2xl); }
 .team-card__pet-badge {
   display: inline-flex; align-items: center; gap: 6px;
