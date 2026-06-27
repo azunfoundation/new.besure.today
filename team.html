@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="stylesheet" href="css/style.css?v=4"><link rel="stylesheet" href="css/responsive.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5"><link rel="stylesheet" href="css/responsive.css?v=5">
 </head>
 <body>
   <a href="#main-content" class="skip-to-content">Skip to main content</a>
@@ -23,113 +23,145 @@
   <div class="mobile-overlay" aria-hidden="true"></div><nav class="mobile-menu" aria-label="Mobile navigation"><div class="mobile-menu__header" style="padding-bottom: 15px; border-bottom: 1px solid var(--border-subtle); margin-bottom: 15px; text-align: left;"><a href="index.html"><img src="images/logo.png" alt="BeSURE Logo" style="max-height: 40px; width: auto; object-fit: contain;"></a></div><ul class="mobile-menu__list"><li class="mobile-menu__item"><a href="index.html" class="mobile-menu__link">Home</a></li><li class="mobile-menu__item"><a href="#" class="mobile-menu__link" data-dropdown>About <i class="fa-solid fa-chevron-down"></i></a><div class="mobile-menu__sub"><a href="about.html" class="mobile-menu__sub-link">Our Story</a><a href="team.html" class="mobile-menu__sub-link">Leadership &amp; Team</a></div></li><li class="mobile-menu__item"><a href="#" class="mobile-menu__link" data-dropdown>Services <i class="fa-solid fa-chevron-down"></i></a><div class="mobile-menu__sub"><a href="services/business-strategy.html" class="mobile-menu__sub-link">Business Strategy</a><a href="services/branding-marketing.html" class="mobile-menu__sub-link">Branding &amp; Marketing</a><a href="services/digital-marketing.html" class="mobile-menu__sub-link">Digital Marketing &amp; SEO</a><a href="services/event-management.html" class="mobile-menu__sub-link">Event Management</a><a href="services/financial-planning.html" class="mobile-menu__sub-link">Financial Planning</a><a href="services/legal-compliance.html" class="mobile-menu__sub-link">Legal &amp; Compliance</a><a href="services/production-house.html" class="mobile-menu__sub-link">Production House</a><a href="services/business-setup.html" class="mobile-menu__sub-link">Business Setup</a></div></li><li class="mobile-menu__item"><a href="portfolio.html" class="mobile-menu__link">Portfolio</a></li><li class="mobile-menu__item"><a href="testimonials.html" class="mobile-menu__link">Testimonials</a></li><li class="mobile-menu__item"><a href="faq.html" class="mobile-menu__link">FAQ</a></li><li class="mobile-menu__item"><a href="contact.html" class="mobile-menu__link">Contact</a></li></ul><div class="mobile-menu__contact"><div class="mobile-menu__contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+19046993086">+1 (904) 699-3086</a></div><div class="mobile-menu__contact-item"><i class="fa-solid fa-phone"></i><a href="tel:+919618089555">+91 96180 89555</a></div><div class="mobile-menu__contact-item"><i class="fa-solid fa-envelope"></i><a href="mailto:contact@besure.today">contact@besure.today</a></div></div><div class="mobile-menu__cta"><a href="contact.html" class="btn btn--gold">Get Started</a></div></nav>
 
   <main id="main-content">
-    <section class="page-hero"><div class="container"><h1 class="page-hero__title">The People Behind BeSURE</h1><p class="page-hero__subtitle">Meet the team that turns business challenges into growth stories</p></div></section>
+    <section class="page-hero bg-navy" style="background-color: #0F172A; position: relative;">
+      <div class="container">
+        <h1 class="page-hero__title" style="color: #FFF;">Leadership Built on Trust, Strategy &amp; Growth</h1>
+        <p class="page-hero__subtitle" style="color: rgba(255,255,255,0.9); max-width: 800px; margin-left: auto; margin-right: auto;">Meet the people guiding BeSURE's mission to help businesses grow with clarity, confidence, and long-term value.</p>
+      </div>
+    </section>
+    
     <nav class="breadcrumbs" aria-label="Breadcrumb"><div class="container"><ol class="breadcrumbs__list"><li><a href="index.html" class="breadcrumbs__link">Home</a></li><li><i class="fa-solid fa-chevron-right breadcrumbs__separator"></i></li><li><a href="about.html" class="breadcrumbs__link">About Us</a></li><li><i class="fa-solid fa-chevron-right breadcrumbs__separator"></i></li><li><span class="breadcrumbs__current">Leadership &amp; Team</span></li></ol></div></nav>
 
     <section class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="section-label animate">Our Leadership</span>
-          <h2 class="section-title animate animate-delay-1">Meet the Minds Behind the Mission</h2>
-          <p class="section-subtitle animate animate-delay-2">A small, dedicated team with a big vision for your business</p>
+        <!-- Leadership Intro Section -->
+        <div class="leadership-intro text-center animate" style="max-width: 800px; margin: 0 auto var(--space-4xl) auto;">
+          <p style="font-size: var(--text-lg); line-height: 1.6; color: var(--text-secondary);">
+            At BeSURE, leadership is not only about decision-making — it is about building trust, creating direction, and helping businesses grow with purpose. Our leadership team brings together strategy, operational experience, and a strong commitment to client success.
+          </p>
         </div>
 
-        <div class="team-grid">
+        <!-- Main Leadership Profiles -->
+        <div class="leadership-grid">
           <!-- CEO -->
-          <div class="team-card animate">
-            <div class="team-card__photo-wrapper">
-              <img src="images/team-ceo-new.jpeg" alt="S. Thanmayananda Reddy — Founder and CEO of BeSURE Business Consulting" class="team-card__photo" loading="lazy">
+          <div class="leadership-card animate">
+            <div class="leadership-card__image-col">
+              <img src="images/team-ceo-new.jpeg" alt="S. Thanmayananda Reddy" class="leadership-card__photo" loading="lazy">
             </div>
-            <div class="team-card__content">
-              <h3 class="team-card__name">S. Thanmayananda Reddy</h3>
-              <p class="team-card__role">Founder &amp; Chief Executive Officer</p>
-              <p class="team-card__tagline">Driving Innovation. Building Businesses. Creating Lasting Impact.</p>
-              <p class="team-card__bio">S. Thanmayananda Reddy is the Founder and Chief Executive Officer of BeSURE Business Consulting, a company dedicated to helping businesses achieve sustainable growth through strategic consulting, branding, digital transformation, and innovative business solutions. With a passion for entrepreneurship and a vision to empower organizations of every size, he has positioned BeSURE as a trusted consulting partner for businesses across multiple industries.</p>
-              <p class="team-card__bio">Under his leadership, BeSURE has successfully partnered with educational institutions, healthcare organizations, startups, corporate enterprises, and entrepreneurs, delivering customized solutions that accelerate business growth and strengthen brand presence.</p>
-              <blockquote class="team-card__quote">"Success begins with strategy, grows through innovation, and lasts through trust."</blockquote>
-              <div class="team-card__expertise">
-                <p class="team-card__expertise-title">Areas of Expertise</p>
-                <div class="team-card__tags">
-                  <span class="team-card__tag">Business Strategy</span>
-                  <span class="team-card__tag">Business Consulting</span>
-                  <span class="team-card__tag">Brand Strategy</span>
-                  <span class="team-card__tag">Digital Marketing</span>
-                  <span class="team-card__tag">Growth Planning</span>
-                  <span class="team-card__tag">Startup Consulting</span>
-                  <span class="team-card__tag">Business Automation</span>
-                  <span class="team-card__tag">Corporate Advisory</span>
-                  <span class="team-card__tag">Market Expansion</span>
-                  <span class="team-card__tag">Innovation &amp; Technology</span>
+            <div class="leadership-card__content-col">
+              <h3 class="leadership-card__name">S. Thanmayananda Reddy</h3>
+              <p class="leadership-card__role">Founder &amp; Chief Executive Officer</p>
+              <p class="leadership-card__tagline">Driving Innovation. Building Businesses. Creating Lasting Impact.</p>
+              <p class="leadership-card__bio">S. Thanmayananda Reddy is the Founder and Chief Executive Officer of BeSURE Business Consulting, a company dedicated to helping businesses achieve sustainable growth through strategic consulting, branding, digital transformation, and innovative business solutions. With a passion for entrepreneurship and a vision to empower organizations of every size, he has positioned BeSURE as a trusted consulting partner for businesses across multiple industries.</p>
+              <p class="leadership-card__bio">Under his leadership, BeSURE has successfully partnered with educational institutions, healthcare organizations, startups, corporate enterprises, and entrepreneurs, delivering customized solutions that accelerate business growth and strengthen brand presence.</p>
+              
+              <div class="leadership-card__expertise">
+                <div class="leadership-card__tags">
+                  <span class="leadership-card__tag">Business Strategy</span>
+                  <span class="leadership-card__tag">Business Consulting</span>
+                  <span class="leadership-card__tag">Brand Strategy</span>
+                  <span class="leadership-card__tag">Digital Marketing</span>
+                  <span class="leadership-card__tag">Growth Planning</span>
+                  <span class="leadership-card__tag">Startup Consulting</span>
+                  <span class="leadership-card__tag">Business Automation</span>
+                  <span class="leadership-card__tag">Corporate Advisory</span>
+                  <span class="leadership-card__tag">Market Expansion</span>
+                  <span class="leadership-card__tag">Innovation &amp; Technology</span>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Managing Partner -->
-          <div class="team-card animate">
-            <div class="team-card__photo-wrapper">
-              <img src="images/team-partner.jpeg" alt="S. Latha Reddy — Managing Partner of BeSURE Business Consulting" class="team-card__photo" loading="lazy">
+          <div class="leadership-card animate">
+            <div class="leadership-card__image-col">
+              <img src="images/team-partner.jpeg" alt="S. Latha Reddy" class="leadership-card__photo" loading="lazy">
             </div>
-            <div class="team-card__content">
-              <h3 class="team-card__name">S. Latha Reddy</h3>
-              <p class="team-card__role">Managing Partner</p>
-              <p class="team-card__tagline">Leading with Vision. Building Relationships. Creating Sustainable Growth.</p>
-              <p class="team-card__bio">S. Latha Reddy serves as the Managing Partner of BeSURE Business Consulting, where she plays a pivotal role in shaping the company's strategic direction, organizational excellence, and long-term business growth. With a strong focus on client relationships, operational leadership, and sustainable business practices, she has been instrumental in establishing BeSURE as a reliable consulting partner for businesses seeking comprehensive growth solutions.</p>
-              <p class="team-card__bio">Her leadership philosophy is centered on collaboration, trust, and delivering measurable value to every client. She works closely with organizations to understand their unique challenges and develop practical strategies that create lasting success.</p>
-              <blockquote class="team-card__quote">"Great businesses are built on trust, strong relationships, and consistent value creation."</blockquote>
-              <div class="team-card__expertise">
-                <p class="team-card__expertise-title">Areas of Expertise</p>
-                <div class="team-card__tags">
-                  <span class="team-card__tag">Business Management</span>
-                  <span class="team-card__tag">Strategic Planning</span>
-                  <span class="team-card__tag">Client Relationships</span>
-                  <span class="team-card__tag">Corporate Operations</span>
-                  <span class="team-card__tag">Business Development</span>
-                  <span class="team-card__tag">Organizational Growth</span>
-                  <span class="team-card__tag">Partnership Development</span>
-                  <span class="team-card__tag">Leadership</span>
-                  <span class="team-card__tag">Process Optimization</span>
-                  <span class="team-card__tag">Corporate Governance</span>
+            <div class="leadership-card__content-col">
+              <h3 class="leadership-card__name">S. Latha Reddy</h3>
+              <p class="leadership-card__role">Managing Partner</p>
+              <p class="leadership-card__tagline">Leading with Vision. Building Relationships. Creating Sustainable Growth.</p>
+              <p class="leadership-card__bio">S. Latha Reddy serves as the Managing Partner of BeSURE Business Consulting, where she plays a pivotal role in shaping the company's strategic direction, organizational excellence, and long-term business growth. With a strong focus on client relationships, operational leadership, and sustainable business practices, she has been instrumental in establishing BeSURE as a reliable consulting partner for businesses seeking comprehensive growth solutions.</p>
+              <p class="leadership-card__bio">Her leadership philosophy is centered on collaboration, trust, and delivering measurable value to every client. She works closely with organizations to understand their unique challenges and develop practical strategies that create lasting success.</p>
+              
+              <div class="leadership-card__expertise">
+                <div class="leadership-card__tags">
+                  <span class="leadership-card__tag">Business Management</span>
+                  <span class="leadership-card__tag">Strategic Planning</span>
+                  <span class="leadership-card__tag">Client Relationships</span>
+                  <span class="leadership-card__tag">Corporate Operations</span>
+                  <span class="leadership-card__tag">Business Development</span>
+                  <span class="leadership-card__tag">Organizational Growth</span>
+                  <span class="leadership-card__tag">Partnership Development</span>
+                  <span class="leadership-card__tag">Leadership</span>
+                  <span class="leadership-card__tag">Process Optimization</span>
+                  <span class="leadership-card__tag">Corporate Governance</span>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Pet / CHO -->
-          <div class="team-card team-card--pet animate">
-            <div class="team-card__photo-wrapper">
-              <img src="images/team-cho.jpeg" alt="Mr. Dollar Reddy — Chief Happiness Officer at BeSURE" class="team-card__photo" loading="lazy">
-            </div>
-            <div class="team-card__content">
-              <span class="team-card__pet-badge">🐾 The Heart Behind BeSURE</span>
-              <h3 class="team-card__name">Mr. Dollar Reddy</h3>
-              <p class="team-card__role">Chief Happiness Officer (CHO) 🐾</p>
-              <p class="team-card__tagline">The Heart Behind BeSURE</p>
-              <p class="team-card__bio">Meet Mr. Dollar Reddy, the official Chief Happiness Officer at BeSURE Business Consulting. While he doesn't attend board meetings or review business strategies, he plays the most important role of all — keeping the team smiling, motivated, and reminding everyone to enjoy the journey.</p>
-              <p class="team-card__bio">With endless enthusiasm, unconditional loyalty, and a talent for brightening even the busiest workdays, Mr. Dollar Reddy represents the values we cherish at BeSURE: trust, positivity, and meaningful relationships.</p>
-              <blockquote class="team-card__quote">"Work hard. Wag harder."</blockquote>
-              <div class="team-card__expertise">
-                <p class="team-card__expertise-title">Responsibilities</p>
-                <div class="team-card__tags">
-                  <span class="team-card__tag">Welcoming Everyone</span>
-                  <span class="team-card__tag">Boosting Office Morale</span>
-                  <span class="team-card__tag">Supervising Snack Breaks</span>
-                  <span class="team-card__tag">Work-Life Balance</span>
-                  <span class="team-card__tag">Inspiring Smiles</span>
-                  <span class="team-card__tag">Most Loyal Team Member</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center animate" style="margin-top:var(--space-3xl);max-width:600px;margin-left:auto;margin-right:auto;">
-          <p style="font-size:var(--text-md);color:var(--text-secondary);font-style:italic;"><strong>At BeSURE, We Believe...</strong> Business is about people. A positive workplace fosters creativity, collaboration, and success — and Mr. Dollar Reddy is our daily reminder that a little happiness goes a long way.</p>
         </div>
       </div>
     </section>
 
-    <section class="section cta-section"><div class="container" style="text-align:center;position:relative;z-index:1;"><h2 class="cta-section__title animate">Want to Join Our Team?</h2><p class="cta-section__subtitle animate animate-delay-1">We're always looking for talented individuals who share our passion for business growth.</p><div class="btn-group animate animate-delay-2" style="justify-content:center;"><a href="contact.html" class="btn btn--gold btn--lg">Get In Touch <i class="fa-solid fa-arrow-right"></i></a><a href="about.html" class="btn btn--outline-white btn--lg">Our Story</a></div></div></section>
+    <!-- Leadership Values Section -->
+    <section class="section bg-light" style="background-color: #F8FAFC;">
+      <div class="container">
+        <div class="section-header text-center animate">
+          <h2 class="section-title">What Guides Our Leadership</h2>
+        </div>
+        
+        <div class="values-grid animate animate-delay-1">
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-chess-knight"></i></div>
+            <h4 class="value-card__title">Strategic Thinking</h4>
+            <p class="value-card__desc">We approach every challenge with clear vision, focusing on practical and scalable solutions.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-handshake-angle"></i></div>
+            <h4 class="value-card__title">Trust &amp; Transparency</h4>
+            <p class="value-card__desc">We believe strong partnerships are built on absolute honesty and clear communication.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-users-gear"></i></div>
+            <h4 class="value-card__title">Relationship-First Growth</h4>
+            <p class="value-card__desc">Business is about people; we prioritize long-term connections over short-term wins.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-card__icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h4 class="value-card__title">Long-Term Business Impact</h4>
+            <p class="value-card__desc">Our ultimate goal is ensuring your business remains competitive and successful for years to come.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="section culture-section animate">
+      <div class="container">
+        <div class="culture-box">
+          <div class="culture-box__image">
+            <img src="images/team-cho.jpeg" alt="Mr. Dollar Reddy" loading="lazy">
+          </div>
+          <div class="culture-box__content">
+            <h2 class="culture-box__title">The Heart Behind BeSURE</h2>
+            <p class="culture-box__text">Meet Mr. Dollar Reddy, our Chief Happiness Officer — a daily reminder that great workplaces are built on trust, positivity, and meaningful relationships.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section cta-section" style="background-color: #0F172A; color: #FFF; text-align: center;">
+      <div class="container" style="position:relative;z-index:1;">
+        <h2 class="cta-section__title animate" style="color: #FFF; font-size: var(--text-4xl); margin-bottom: 16px;">Ready to Work With a Team That Understands Business Growth?</h2>
+        <p class="cta-section__subtitle animate animate-delay-1" style="color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto var(--space-2xl) auto; font-size: var(--text-lg);">Connect with BeSURE and discover how strategic consulting can help your business move forward with confidence.</p>
+        <div class="btn-group animate animate-delay-2" style="justify-content:center;">
+          <a href="contact.html" class="btn btn--gold btn--lg">Get In Touch</a>
+          <a href="services.html" class="btn btn--outline-white btn--lg">Explore Our Services</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="footer"><div class="container"><div class="footer__grid"><div class="footer__brand"><img src="images/logo.png" alt="BeSURE Logo" class="footer__brand-logo-image" style="max-height: 50px; width: auto; object-fit: contain; margin-bottom: 15px;"><p class="footer__desc">BeSURE Business Consulting LLP partners with ambitious businesses across the US and India to deliver strategic consulting, branding, digital marketing, and growth solutions that produce measurable results.</p><div class="footer__social"><a href="https://www.instagram.com/besloyal" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a><a href="https://www.youtube.com/@BeSUREBusinessConsulting" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a><a href="https://wa.me/919618089555" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a><a href="https://www.linkedin.com/company/besure-business-consulting" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a><a href="https://www.facebook.com/besurebusinessconsulting" class="footer__social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></div></div><div><h4 class="footer__heading">Quick Links</h4><div class="footer__links"><a href="about.html" class="footer__link">About Us</a><a href="services.html" class="footer__link">Services</a><a href="portfolio.html" class="footer__link">Portfolio</a><a href="testimonials.html" class="footer__link">Testimonials</a><a href="team.html" class="footer__link">Our Team</a><a href="faq.html" class="footer__link">FAQ</a><a href="contact.html" class="footer__link">Contact</a></div></div><div><h4 class="footer__heading">Our Services</h4><div class="footer__links"><a href="services/business-strategy.html" class="footer__link">Business Strategy</a><a href="services/branding-marketing.html" class="footer__link">Branding &amp; Marketing</a><a href="services/digital-marketing.html" class="footer__link">Digital Marketing</a><a href="services/event-management.html" class="footer__link">Event Management</a><a href="services/financial-planning.html" class="footer__link">Financial Planning</a><a href="services/legal-compliance.html" class="footer__link">Legal Compliance</a><a href="services/production-house.html" class="footer__link">Production House</a><a href="services/business-setup.html" class="footer__link">Business Setup</a></div></div><div><h4 class="footer__heading">Contact Us</h4><div class="footer__contact-item"><i class="fa-solid fa-location-dot"></i><div><span class="footer__contact-label">US Office</span>2180 W State Rd 434, Suite 6112, Longwood, FL 32779</div></div><div class="footer__contact-item"><i class="fa-solid fa-location-dot"></i><div><span class="footer__contact-label">India Office</span>Srinivas Nagar Colony, Ameerpet, Hyderabad, Telangana 500016</div></div><div class="footer__contact-item"><i class="fa-solid fa-phone"></i><div><span class="footer__contact-label">Phone</span><a href="tel:+19046993086" style="color:var(--text-inverse-muted)">+1 (904) 699-3086</a><br><a href="tel:+919618089555" style="color:var(--text-inverse-muted)">+91 96180 89555</a></div></div><div class="footer__contact-item"><i class="fa-solid fa-envelope"></i><div><span class="footer__contact-label">Email</span><a href="mailto:contact@besure.today" style="color:var(--text-inverse-muted)">contact@besure.today</a></div></div><div class="footer__contact-item"><i class="fa-solid fa-clock"></i><div><span class="footer__contact-label">Hours</span>Mon — Fri: 9:00 AM — 6:00 PM</div></div></div></div><div class="footer__bottom"><span class="footer__copyright">&copy; <span class="footer__year">2025</span> BeSURE Business Consulting LLP. All rights reserved.</span><div class="footer__legal"><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Service</a><a href="disclaimer.html">Disclaimer</a><a href="sitemap.html">Sitemap</a></div></div></div></footer>
