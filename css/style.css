@@ -2812,14 +2812,14 @@ p {
    New Portfolio Text Card Design
    -------------------------------------------------------------------------- */
 .portfolio-item {
-  background: #0F172A;
+  background: #FFFFFF;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
   padding: 24px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
   overflow: hidden;
   text-decoration: none;
@@ -2827,8 +2827,8 @@ p {
 
 .portfolio-item:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  background: #15203A;
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-gold);
 }
 
 .portfolio-item__header {
@@ -2849,7 +2849,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 20px rgba(22, 163, 74, 0.3);
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.2);
   flex-shrink: 0;
 }
 
@@ -2860,7 +2860,7 @@ p {
 }
 
 .portfolio-item__title {
-  color: #F8FAFC;
+  color: var(--text-base);
   font-size: 18px;
   font-weight: 700;
   margin: 0;
@@ -2873,7 +2873,7 @@ p {
 }
 
 .portfolio-item__location {
-  color: #64748B;
+  color: var(--text-muted);
 }
 
 .portfolio-item__sector {
@@ -2881,7 +2881,7 @@ p {
 }
 
 .portfolio-item__desc {
-  color: #94A3B8;
+  color: var(--text-muted);
   font-size: 15px;
   line-height: 1.6;
   margin-bottom: 24px;
@@ -2901,30 +2901,34 @@ p {
   text-transform: uppercase;
   padding: 4px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: #1E293B;
-  color: #E2E8F0;
+  border: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  color: var(--text-base);
   letter-spacing: 0.5px;
 }
 
 .portfolio-item__tag--blue {
-  color: #38BDF8;
-  border-color: rgba(56, 189, 248, 0.3);
+  color: #0284C7;
+  border-color: rgba(2, 132, 199, 0.2);
+  background: rgba(2, 132, 199, 0.05);
 }
 
 .portfolio-item__tag--purple {
-  color: #A855F7;
-  border-color: rgba(168, 85, 247, 0.3);
+  color: #9333EA;
+  border-color: rgba(147, 51, 234, 0.2);
+  background: rgba(147, 51, 234, 0.05);
 }
 
 .portfolio-item__tag--orange {
-  color: #F97316;
-  border-color: rgba(249, 115, 22, 0.3);
+  color: #EA580C;
+  border-color: rgba(234, 88, 12, 0.2);
+  background: rgba(234, 88, 12, 0.05);
 }
 
 .portfolio-item__tag--green {
-  color: #10B981;
-  border-color: rgba(16, 185, 129, 0.3);
+  color: #059669;
+  border-color: rgba(5, 150, 105, 0.2);
+  background: rgba(5, 150, 105, 0.05);
 }
 
 .portfolio-item__action-wrapper {
@@ -2955,6 +2959,13 @@ p {
   justify-content: center;
   gap: 8px;
   width: 100%;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.portfolio-item:hover .portfolio-item__action {
+  opacity: 1;
+  visibility: visible;
 }
 
 .portfolio-item__action-wrapper > a {
